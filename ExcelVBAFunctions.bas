@@ -1,6 +1,34 @@
 Attribute VB_Name = "ExcelVBAFunctions"
 Option Explicit
 
+Function CountChar(str As String, char As String, Optional caseSensitive As Boolean = False) As Long
+    
+    'Counts the occurance of the specified character in a string.
+    'If caseSensitive = True, the Replace function will use vbBinaryCompare (0).
+    'If caseSensitive = False, the Replace function will use vbTextCompare (1).
+    '
+    'Source: https://www.mrexcel.com/forum/excel-questions/234028-vba-count-substrings-string.html
+    'str: String to search in.
+    'char: Character to count. Must be a string of length one, otherwise incorrect results will be returned.
+    'caseSensitive: True or False to take into account case sensitivity when counting the character.
+    
+    Dim caseSens As Byte
+    If caseSensitive Then
+        caseSens = 0
+    Else
+        caseSens = 1
+    End If
+    
+    Dim baseCount As Long
+    Dim endCount As Long
+    
+    baseCount = Len(str)
+    endCount = Len(Replace(str, Find:=char, Replace:="", Start:=1, Count:=-1, Compare:=caseSens))
+    
+    CountChar = baseCount - endCount
+    
+End Function
+
 Sub DeleteBlankRows(rng As Range, Optional includePartiallyBlankRows As Boolean = False)
     
     'Deletes blank rows in the specified range.

@@ -32,14 +32,14 @@ End Function
 Sub DeleteBlankRows(rng As Range, Optional includePartiallyBlankRows As Boolean = False)
     
     'Deletes blank rows in the specified range.
-    'If includePartialllyBlankRows = False, it will delete rows that are blank across the entirely worksheet.
+    'If includePartiallyBlankRows = False, it will delete rows that are blank across the entire worksheet.
     'If includePartiallyBlankRows = True, it will delete partially blank rows within the specified range.
-    'Note: Excel will automatically determine the table boundries in the range if includePartiallyBlankRows = True.
+    'Note: Excel will automatically determine the table boundaries in the range if includePartiallyBlankRows = True.
     'This means that if an entire column is blank in the range, it won't be taken into consideration for partial blanks.
     'Source: http://www.ozgrid.com/VBA/VBACode.htm
     '
     'rng: Range to search for blank rows
-    'includePartiallyBlankRows: True or False to delete rows that are entirely blank or partiallyl blank within the specified range.
+    'includePartiallyBlankRows: True or False to delete rows that are entirely blank or partially blank within the specified range.
     
     If Not includePartiallyBlankRows Then
         Dim i As Long
@@ -165,13 +165,13 @@ Function RemoveNonAlphaNumeric(str As String, Optional removeSpaces As Boolean =
     
 End Function
 
-Function SheetExists(wsName As String, Optional wb As Workbook = ActiveWorkbook) As Boolean
+Function SheetExists(wsName As String, wb As Workbook) As Boolean
     
     'Checks if the specified name exists as a sheet.
     'Source: https://stackoverflow.com/a/6688482
     '
     'wsName: Name of the sheet to check for.
-    'wb: The workbook to check in.
+    'wb: Workbook to check in.
     
     Dim ws As Worksheet
     
